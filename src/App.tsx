@@ -66,6 +66,7 @@ const NAV_LINKS = [
   { label: 'فيديو توضيحي',  href: '#video' },
   { label: 'كيف يعمل',      href: '#how' },
   { label: 'تحميل التطبيق', href: '#download' },
+  { label: 'تواصل معنا',    href: 'https://www.elevix.space/', external: true },
 ]
 
 /* ══════════════════════════════════════════════
@@ -264,9 +265,12 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
           {/* Desktop nav links */}
           <div id="desknav" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {NAV_LINKS.map((l, i) => (
-              <a key={i} href={l.href} style={{ padding: '6px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600, color: linkColor, textDecoration: 'none', transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = textColor)}
-                onMouseLeave={e => (e.currentTarget.style.color = linkColor)}>{l.label}</a>
+              <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '6px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600, color: l.external ? '#B8860B' : linkColor, textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 4 }}
+                onMouseEnter={e => (e.currentTarget.style.color = l.external ? '#D4A017' : textColor)}
+                onMouseLeave={e => (e.currentTarget.style.color = l.external ? '#B8860B' : linkColor)}>
+                {l.label}
+                {l.external && <span style={{ fontSize: 11 }}>↗</span>}
+              </a>
             ))}
           </div>
 
@@ -290,8 +294,11 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
       {mobileOpen && (
         <div style={{ position: 'fixed', top: 64, inset: 0, zIndex: 40, background: dark ? 'rgba(17,24,27,0.97)' : 'rgba(255,255,255,0.97)', backdropFilter: 'blur(20px)', display: 'flex', flexDirection: 'column', padding: 20, gap: 4 }}>
           {NAV_LINKS.map((l, i) => (
-            <a key={i} href={l.href} style={{ padding: '14px 16px', borderRadius: 14, fontSize: 16, fontWeight: 600, color: dark ? 'rgba(232,240,242,0.85)' : '#0D1B1E', textDecoration: 'none', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`, textAlign: 'right' }}
-              onClick={() => setMobileOpen(false)}>{l.label}</a>
+            <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '14px 16px', borderRadius: 14, fontSize: 16, fontWeight: 600, color: l.external ? '#B8860B' : (dark ? 'rgba(232,240,242,0.85)' : '#0D1B1E'), textDecoration: 'none', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`, textAlign: 'right', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+              onClick={() => setMobileOpen(false)}>
+              <span>{l.label}</span>
+              {l.external && <span style={{ fontSize: 13 }}>↗</span>}
+            </a>
           ))}
           <a href={apkFile} download="Rasd-app.apk" style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', borderRadius: 16, fontSize: 15, fontWeight: 700, color: 'white', background: '#0F5B6E', textDecoration: 'none' }}
             onClick={() => setMobileOpen(false)}>
@@ -834,9 +841,20 @@ function DownloadSection({ dark }: { dark: boolean }) {
                 استكشف التطبيق
               </a>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18 }}>
               <Ic n="droid" s={18} c="rgba(255,255,255,0.45)" />
               <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)' }}>متاح لأجهزة Android (تحميل APK فوري)</span>
+            </div>
+
+            {/* Elevix Contact Banner */}
+            <div style={{ paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>هل تحتاج إلى استفسار أو طلب تخصيص لمركزك؟</span>
+              <a href="https://www.elevix.space/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 700, color: '#FFFFFF', background: 'rgba(255,255,255,0.18)', padding: '6px 14px', borderRadius: 20, textDecoration: 'none', transition: 'all 0.2s', border: '1px solid rgba(255,255,255,0.25)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.18)'; e.currentTarget.style.transform = 'none' }}>
+                <span>تواصل مع الشركة المطورة (Elevix)</span>
+                <span style={{ fontSize: 12 }}>↗</span>
+              </a>
             </div>
           </div>
           <div className="reveal-left" style={{ flexShrink: 0, position: 'relative' }}>
@@ -864,6 +882,7 @@ function Footer() {
     { label: 'فيديو توضيحي', href: '#video' },
     { label: 'كيف يعمل', href: '#how' },
     { label: 'تحميل التطبيق', href: '#download' },
+    { label: 'تواصل معنا', href: 'https://www.elevix.space/', external: true },
   ]
   return (
     <footer style={{ background: '#0A1316', fontFamily: 'Cairo,sans-serif' }}>
@@ -890,9 +909,12 @@ function Footer() {
             <p style={{ fontSize: 11, fontWeight: 800, color: 'rgba(232,240,242,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 18 }}>روابط سريعة</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
               {links.map((l, i) => (
-                <a key={i} href={l.href} style={{ fontSize: 14, color: 'rgba(232,240,242,0.42)', textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#0F5B6E'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(232,240,242,0.42)'}>{l.label}</a>
+                <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ fontSize: 14, color: l.external ? '#B8860B' : 'rgba(232,240,242,0.42)', textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 4 }}
+                  onMouseEnter={e => e.currentTarget.style.color = l.external ? '#D4A017' : '#0F5B6E'}
+                  onMouseLeave={e => e.currentTarget.style.color = l.external ? '#B8860B' : 'rgba(232,240,242,0.42)'}>
+                  <span>{l.label}</span>
+                  {l.external && <span style={{ fontSize: 11 }}>↗</span>}
+                </a>
               ))}
             </div>
           </div>
@@ -900,14 +922,34 @@ function Footer() {
           <div style={{ textAlign: 'right' }}>
             <p style={{ fontSize: 11, fontWeight: 800, color: 'rgba(232,240,242,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 18 }}>الشركة المطورة</p>
             <div>
-              <p style={{ fontSize: 12, color: 'rgba(232,240,242,0.3)', marginBottom: 6 }}>تم تطويره بواسطة</p>
-              <p style={{ fontSize: 16, fontWeight: 800, color: '#B8860B', marginBottom: 24 }}>Elevix Technologies</p>
+              <p style={{ fontSize: 12, color: 'rgba(232,240,242,0.35)', marginBottom: 6 }}>تم تطوير المنصة بواسطة</p>
+              <a href="https://www.elevix.space/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 16, fontWeight: 900, color: '#B8860B', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 14, transition: 'all 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#D4A017'}
+                onMouseLeave={e => e.currentTarget.style.color = '#B8860B'}>
+                Elevix Technologies
+                <span style={{ fontSize: 13 }}>↗</span>
+              </a>
+              <div>
+                <a href="https://www.elevix.space/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 12, fontSize: 13, fontWeight: 700, color: '#E8F0F2', background: 'rgba(184,134,11,0.15)', border: '1px solid rgba(184,134,11,0.35)', textDecoration: 'none', transition: 'all 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(184,134,11,0.28)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(184,134,11,0.15)'; e.currentTarget.style.transform = 'none' }}>
+                  <span>تواصل مع الشركة المطورة</span>
+                  <span style={{ fontSize: 13 }}>↗</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
         {/* Bottom */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 24 }}>
-          <p style={{ fontSize: 12, color: 'rgba(232,240,242,0.25)' }}>تم التطوير بواسطة Elevix Technologies</p>
+          <p style={{ fontSize: 12, color: 'rgba(232,240,242,0.45)' }}>
+            تم التطوير بواسطة{' '}
+            <a href="https://www.elevix.space/" target="_blank" rel="noopener noreferrer" style={{ color: '#B8860B', fontWeight: 700, textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.textDecoration = 'underline')}
+              onMouseLeave={e => (e.currentTarget.style.textDecoration = 'none')}>
+              Elevix Technologies
+            </a>
+          </p>
           <p style={{ fontSize: 12, color: 'rgba(232,240,242,0.25)' }}>© 2026 Rasd. All rights reserved.</p>
         </div>
       </div>
