@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       assetsInlineLimit: 0,
       chunkSizeWarningLimit: 50000,
     },
-    assetsInclude: ['**/*.apk'],
+    assetsInclude: ['**/*.apk', '**/*.pdf'],
     plugins: [
 react(),
       tailwindcss(),

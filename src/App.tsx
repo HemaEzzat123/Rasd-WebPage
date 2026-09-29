@@ -3,6 +3,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 /* ══════════════════════════════════════════════
    IMAGE IMPORTS
 ══════════════════════════════════════════════ */
+import imgLogo from './images/logo.jpeg'
 import imgDashboard from './images/dashboard.jpeg'
 import imgGroupDetails from './images/group-details.jpeg'
 import imgStudentDetails from './images/student-details.jpeg'
@@ -14,8 +15,9 @@ import imgQrAttendance from './images/qr-attendance.jpeg'
 import imgAdminDashboard from './images/admin-dashboard.jpeg'
 import imgAddTeacher from './images/add-teacher.jpeg'
 import imgExamSubmit from './images/exam-submit.jpeg'
-import appVideo from './video/WhatsApp Video 2026-09-29 at 5.29.32 PM.mp4'
+import appVideo from './video/Video Project 2.mp4'
 import apkFile from './app-release.apk?url'
+import pdfFile from './files/rasd-documentation.pdf?url'
 
 /* ══════════════════════════════════════════════
    CONSTANTS & DATA
@@ -48,7 +50,7 @@ const WHY = [
 const SHOWCASE_SCREENS = [
   { label: 'لوحة التحكم', img: imgAdminDashboard, desc: 'واجهة رئيسية شاملة تلخص حالة العمليات والطلاب في لمح البصر' },
   { label: 'تفاصيل الطالب', img: imgStudentDetails, desc: 'ملف رقمي شامل لبيانات الطالب وسجل الحضور والملف المالي والأكاديمي' },
-  { label: 'تفاصيل المجموعة', img: imgGroupDetails, desc: 'متابعة أداء المجموعة، مواعيد الحصص، وأعداد الطلاب ومستحقاتهم' },
+  { label: 'تسجيل الدخول', img: imgGroupDetails, desc: 'متابعة أداء المجموعة، مواعيد الحصص، وأعداد الطلاب ومستحقاتهم' },
   { label: 'الامتحانات', img: imgExamQuestions, desc: 'إنشاء وإدارة بنك الأسئلة والاختبارات الدورية مع تحديد الدرجات' },
   { label: 'المصروفات', img: imgExpenses, desc: 'متابعة الرسوم الشهرية، تسجيل المدفوعات، وحصر المتأخرين بوضوح' },
   { label: 'الحضور بـ QR', img: imgQrAttendance, desc: 'مسح فوري لبطاقة الطالب بكاميرا الهاتف في أجزاء من الثانية' },
@@ -66,6 +68,7 @@ const NAV_LINKS = [
   { label: 'فيديو توضيحي',  href: '#video' },
   { label: 'كيف يعمل',      href: '#how' },
   { label: 'تحميل التطبيق', href: '#download' },
+  { label: 'دليل المنظومة PDF', href: pdfFile, download: 'رصد_توثيق_المنتج.pdf' },
   { label: 'تواصل معنا',    href: 'https://www.elevix.space/', external: true },
 ]
 
@@ -101,6 +104,7 @@ function Ic({ n, s = 20, c = 'currentColor' }: { n: string; s?: number; c?: stri
     case 'arrl':   return <svg {...p}><polyline points="15 18 9 12 15 6"/></svg>
     case 'arrr':   return <svg {...p}><polyline points="9 18 15 12 9 6"/></svg>
     case 'droid':  return <svg {...p}><path d="m9 3 1.5 2.5M15 3l-1.5 2.5M6 16a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2z"/><line x1="8" y1="21" x2="8" y2="17"/><line x1="16" y1="21" x2="16" y2="17"/></svg>
+    case 'file':   return <svg {...p}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
     default: return null
   }
 }
@@ -168,21 +172,20 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
 
           {/* Logo */}
           <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <div style={{ width: 38, height: 38, borderRadius: 14, background: '#0F5B6E', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(15,91,110,0.35)' }}>
-              <span style={{ fontSize: 17, fontWeight: 900, color: 'white' }}>ر</span>
-            </div>
+            <img src={imgLogo} alt="شعار منصة رصد" style={{ width: 38, height: 38, borderRadius: 12, objectFit: 'cover', boxShadow: '0 4px 14px rgba(15,91,110,0.35)' }} />
             <div>
               <span style={{ fontSize: 17, fontWeight: 900, color: textColor }}>رصد</span>
-              <span style={{ fontSize: 12, fontWeight: 500, color: textColor, opacity: 0.4, marginRight: 4 }}>| Rasd</span>
+              <span style={{ fontSize: 12, fontWeight: 500, color: textColor, opacity: 0.45, marginRight: 4 }}>| Rasd</span>
             </div>
           </a>
 
           {/* Desktop nav links */}
           <div id="desknav" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {NAV_LINKS.map((l, i) => (
-              <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '6px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600, color: l.external ? '#B8860B' : linkColor, textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 4 }}
-                onMouseEnter={e => (e.currentTarget.style.color = l.external ? '#D4A017' : textColor)}
-                onMouseLeave={e => (e.currentTarget.style.color = l.external ? '#B8860B' : linkColor)}>
+              <a key={i} href={l.href} download={l.download} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '6px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600, color: l.external ? '#B8860B' : (l.download ? '#B8860B' : linkColor), textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 5 }}
+                onMouseEnter={e => (e.currentTarget.style.color = l.external || l.download ? '#D4A017' : textColor)}
+                onMouseLeave={e => (e.currentTarget.style.color = l.external || l.download ? '#B8860B' : linkColor)}>
+                {l.download && <Ic n="file" s={14} c={l.download ? '#B8860B' : linkColor} />}
                 {l.label}
                 {l.external && <span style={{ fontSize: 11 }}>↗</span>}
               </a>
@@ -209,9 +212,12 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
       {mobileOpen && (
         <div style={{ position: 'fixed', top: 64, inset: 0, zIndex: 40, background: dark ? 'rgba(17,24,27,0.97)' : 'rgba(255,255,255,0.97)', backdropFilter: 'blur(20px)', display: 'flex', flexDirection: 'column', padding: 20, gap: 4 }}>
           {NAV_LINKS.map((l, i) => (
-            <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '14px 16px', borderRadius: 14, fontSize: 16, fontWeight: 600, color: l.external ? '#B8860B' : (dark ? 'rgba(232,240,242,0.85)' : '#0D1B1E'), textDecoration: 'none', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`, textAlign: 'right', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            <a key={i} href={l.href} download={l.download} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ padding: '14px 16px', borderRadius: 14, fontSize: 16, fontWeight: 600, color: l.external || l.download ? '#B8860B' : (dark ? 'rgba(232,240,242,0.85)' : '#0D1B1E'), textDecoration: 'none', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`, textAlign: 'right', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
               onClick={() => setMobileOpen(false)}>
-              <span>{l.label}</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                {l.download && <Ic n="file" s={16} c="#B8860B" />}
+                {l.label}
+              </span>
               {l.external && <span style={{ fontSize: 13 }}>↗</span>}
             </a>
           ))}
@@ -259,8 +265,9 @@ function HeroSection({ dark }: { dark: boolean }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
           {/* Text */}
           <div style={{ flex: '1 1 420px', textAlign: 'right' }}>
-            <div className="hero-title" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 16px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.14)' : 'rgba(15,91,110,0.08)', border: '1px solid rgba(15,91,110,0.3)', marginBottom: 24 }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#2F6B4F' }} className="animate-pulse-slow" />
+            <div className="hero-title" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '5px 16px 5px 12px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.14)' : 'rgba(15,91,110,0.08)', border: '1px solid rgba(15,91,110,0.3)', marginBottom: 24 }}>
+              <img src={imgLogo} alt="شعار رصد" style={{ width: 22, height: 22, borderRadius: 6, objectFit: 'cover' }} />
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#2F6B4F' }} className="animate-pulse-slow" />
               <span style={{ fontSize: 13, fontWeight: 700, color: '#0F5B6E' }}>نظام إدارة السناتر التعليمية والمدرسين</span>
             </div>
 
@@ -281,13 +288,19 @@ function HeroSection({ dark }: { dark: boolean }) {
                 onMouseLeave={e => { e.currentTarget.style.background = '#0F5B6E'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(15,91,110,0.42)' }}>
                 <Ic n="dl" s={18} c="white" />تحميل التطبيق
               </a>
-              <a href="#video" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: '#0F5B6E', background: dark ? 'rgba(15,91,110,0.1)' : 'rgba(15,91,110,0.07)', border: '1.5px solid rgba(15,91,110,0.3)', textDecoration: 'none', transition: 'all 0.2s' }}
+              <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 22px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: '#B8860B', background: dark ? 'rgba(184,134,11,0.12)' : 'rgba(184,134,11,0.08)', border: '1.5px solid rgba(184,134,11,0.35)', textDecoration: 'none', transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(184,134,11,0.2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = dark ? 'rgba(184,134,11,0.12)' : 'rgba(184,134,11,0.08)'; e.currentTarget.style.transform = 'none' }}>
+                <Ic n="file" s={17} c="#B8860B" />
+                تحميل التوثيق (PDF)
+              </a>
+              <a href="#video" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 24px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: '#0F5B6E', background: dark ? 'rgba(15,91,110,0.1)' : 'rgba(15,91,110,0.07)', border: '1.5px solid rgba(15,91,110,0.3)', textDecoration: 'none', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(15,91,110,0.2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = dark ? 'rgba(15,91,110,0.1)' : 'rgba(15,91,110,0.07)'; e.currentTarget.style.transform = 'none' }}>
                 <Ic n="play" s={16} c="#0F5B6E" />
                 شاهد الفيديو
               </a>
-              <a href="#showcase" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 24px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: textMuted, background: 'transparent', textDecoration: 'none', transition: 'all 0.2s' }}
+              <a href="#showcase" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 22px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: textMuted, background: 'transparent', textDecoration: 'none', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#0F5B6E' }}
                 onMouseLeave={e => { e.currentTarget.style.color = textMuted }}>
                 استكشف رصد
@@ -295,9 +308,18 @@ function HeroSection({ dark }: { dark: boolean }) {
               </a>
             </div>
 
-            <div className="hero-cta" style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 20 }}>
-              <Ic n="droid" s={16} c={dark ? 'rgba(232,240,242,0.38)' : 'rgba(13,27,30,0.38)'} />
-              <span style={{ fontSize: 13, color: dark ? 'rgba(232,240,242,0.38)' : 'rgba(13,27,30,0.38)' }}>متاح لأجهزة Android (ملف APK مباشر)</span>
+            <div className="hero-cta" style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 20, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                <Ic n="droid" s={16} c={dark ? 'rgba(232,240,242,0.38)' : 'rgba(13,27,30,0.38)'} />
+                <span style={{ fontSize: 13, color: dark ? 'rgba(232,240,242,0.38)' : 'rgba(13,27,30,0.38)' }}>متاح لأجهزة Android (ملف APK)</span>
+              </div>
+              <span style={{ color: dark ? 'rgba(232,240,242,0.2)' : 'rgba(13,27,30,0.2)' }}>•</span>
+              <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#B8860B', textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#D4A017'}
+                onMouseLeave={e => e.currentTarget.style.color = '#B8860B'}>
+                <Ic n="file" s={15} c="#B8860B" />
+                <span>دليل التوثيق والمواصفات (PDF)</span>
+              </a>
             </div>
           </div>
 
@@ -359,8 +381,9 @@ function AboutSection({ dark }: { dark: boolean }) {
     <section id="about" style={{ padding: '100px 20px', position: 'relative' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 60 }}>
-          <div className="reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.13)' : 'rgba(15,91,110,0.07)', border: '1px solid rgba(15,91,110,0.25)' }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#0F5B6E' }}>عن رصد</span>
+          <div className="reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '6px 16px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.13)' : 'rgba(15,91,110,0.07)', border: '1px solid rgba(15,91,110,0.25)' }}>
+            <img src={imgLogo} alt="رصد" style={{ width: 18, height: 18, borderRadius: 5, objectFit: 'cover' }} />
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#0F5B6E' }}>عن منظومة رصد</span>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
@@ -387,6 +410,25 @@ function AboutSection({ dark }: { dark: boolean }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Documentation Download Card */}
+            <div style={{ marginTop: 24, padding: '16px 20px', borderRadius: 18, background: dark ? 'rgba(184,134,11,0.09)' : 'rgba(184,134,11,0.06)', border: '1px solid rgba(184,134,11,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, textAlign: 'right' }}>
+                <div style={{ width: 42, height: 42, borderRadius: 14, background: 'rgba(184,134,11,0.18)', border: '1px solid rgba(184,134,11,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Ic n="file" s={22} c="#B8860B" />
+                </div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: textMain }}>كتيب توثيق المنظومة الشامل (PDF)</div>
+                  <div style={{ fontSize: 12, color: textMuted }}>مستند تفصيلي يشرح كافة الميزات والسيناريوهات الميدانية لنظام رصد</div>
+                </div>
+              </div>
+              <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 18px', borderRadius: 12, fontSize: 13, fontWeight: 700, color: '#FFFFFF', background: '#B8860B', textDecoration: 'none', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(184,134,11,0.3)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#D4A017'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#B8860B'; e.currentTarget.style.transform = 'none' }}>
+                <Ic n="dl" s={15} c="white" />
+                تحميل الكتيب PDF
+              </a>
             </div>
           </div>
           {/* Phone */}
@@ -690,6 +732,18 @@ function DownloadSection({ dark }: { dark: boolean }) {
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', lineHeight: 1.95, marginBottom: 36 }}>
               رصد — إدارة أسهل، ومتابعة أوضح. كل عملية في مكان واحد. حمّل التطبيق الآن وابدأ تنظيم حصصك وطلابك باحترافية وأمان.
             </p>
+            {/* App Branding Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 26 }}>
+              <img src={imgLogo} alt="أيقونة تطبيق رصد" style={{ width: 68, height: 68, borderRadius: 18, objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.35)', border: '2.5px solid rgba(255,255,255,0.25)' }} />
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 20, fontWeight: 900, color: 'white' }}>تطبيق رصد — للأندرويد</span>
+                  <span style={{ fontSize: 11, fontWeight: 800, padding: '2px 8px', borderRadius: 8, background: 'rgba(255,255,255,0.18)', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>APK رسمي</span>
+                </div>
+                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: '4px 0 0' }}>الإصدار المباشر والأحدث لتنظيم الحصص والطلاب</p>
+              </div>
+            </div>
+
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 22 }}>
               <a href={apkFile} download="Rasd-app.apk" onClick={() => setClicked(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 18, fontSize: 14, fontWeight: 800, color: '#0F5B6E', background: 'white', border: 'none', cursor: 'pointer', boxShadow: '0 8px 32px rgba(0,0,0,0.25)', transition: 'all 0.2s', textDecoration: 'none' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 44px rgba(0,0,0,0.35)' }}
@@ -697,15 +751,28 @@ function DownloadSection({ dark }: { dark: boolean }) {
                 <Ic n="dl" s={18} c="#0F5B6E" />
                 {clicked ? '✓ جاري التحميل...' : 'تحميل تطبيق رصد APK'}
               </a>
-              <a href="#showcase" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 18, fontSize: 14, fontWeight: 700, color: 'white', background: 'rgba(255,255,255,0.13)', border: '1.5px solid rgba(255,255,255,0.28)', textDecoration: 'none', transition: 'all 0.2s' }}
+              <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 26px', borderRadius: 18, fontSize: 14, fontWeight: 800, color: '#FFFFFF', background: '#B8860B', textDecoration: 'none', boxShadow: '0 8px 25px rgba(0,0,0,0.2)', transition: 'all 0.2s', border: '1px solid rgba(255,255,255,0.25)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#D4A017'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#B8860B'; e.currentTarget.style.transform = 'none' }}>
+                <Ic n="file" s={17} c="white" />
+                تحميل دليل المنظومة (PDF)
+              </a>
+              <a href="#showcase" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 24px', borderRadius: 18, fontSize: 14, fontWeight: 700, color: 'white', background: 'rgba(255,255,255,0.13)', border: '1.5px solid rgba(255,255,255,0.28)', textDecoration: 'none', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.13)'; e.currentTarget.style.transform = 'none' }}>
                 استكشف التطبيق
               </a>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18 }}>
-              <Ic n="droid" s={18} c="rgba(255,255,255,0.45)" />
-              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)' }}>متاح لأجهزة Android (تحميل APK فوري)</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 18, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Ic n="droid" s={18} c="rgba(255,255,255,0.6)" />
+                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>متاح لأجهزة Android (تحميل APK فوري)</span>
+              </div>
+              <span style={{ color: 'rgba(255,255,255,0.3)' }}>•</span>
+              <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#FFE082', textDecoration: 'none', fontWeight: 700 }}>
+                <Ic n="file" s={16} c="#FFE082" />
+                <span>ملف PDF التوثيقي الكامل</span>
+              </a>
             </div>
 
             {/* Elevix Contact Banner */}
@@ -721,7 +788,7 @@ function DownloadSection({ dark }: { dark: boolean }) {
           </div>
           <div className="reveal-left" style={{ flexShrink: 0, position: 'relative' }}>
             <div className="animate-float">
-              <PhoneMockup imgSrc={imgGroupDetails} alt="شاشة تفاصيل المجموعة والطلاب في رصد" />
+              <PhoneMockup imgSrc={imgGroupDetails} alt="تسجيل الدخول" />
             </div>
             <div style={{ position: 'absolute', inset: 0, borderRadius: 44, filter: 'blur(40px)', background: 'rgba(255,255,255,0.07)', zIndex: -1 }} />
           </div>
@@ -743,7 +810,8 @@ function Footer() {
     { label: 'داخل التطبيق', href: '#showcase' },
     { label: 'فيديو توضيحي', href: '#video' },
     { label: 'كيف يعمل', href: '#how' },
-    { label: 'تحميل التطبيق', href: '#download' },
+    { label: 'تحميل تطبيق رصد (APK)', href: apkFile, download: 'Rasd-app.apk' },
+    { label: 'دليل المنظومة (PDF)', href: pdfFile, download: 'رصد_توثيق_المنتج.pdf' },
     { label: 'تواصل معنا', href: 'https://www.elevix.space/', external: true },
   ]
   return (
@@ -753,14 +821,12 @@ function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 40, marginBottom: 50 }}>
           {/* Brand */}
           <div style={{ textAlign: 'right' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-end', marginBottom: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'flex-end', marginBottom: 16 }}>
               <div>
                 <div style={{ fontSize: 18, fontWeight: 900, color: 'white' }}>رصد</div>
                 <div style={{ fontSize: 11, color: 'rgba(232,240,242,0.3)' }}>| Rasd</div>
               </div>
-              <div style={{ width: 42, height: 42, borderRadius: 16, background: '#0F5B6E', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 16px rgba(15,91,110,0.4)' }}>
-                <span style={{ fontSize: 18, fontWeight: 900, color: 'white' }}>ر</span>
-              </div>
+              <img src={imgLogo} alt="شعار منصة رصد" style={{ width: 44, height: 44, borderRadius: 14, objectFit: 'cover', boxShadow: '0 4px 16px rgba(15,91,110,0.4)' }} />
             </div>
             <p style={{ fontSize: 14, color: 'rgba(232,240,242,0.42)', lineHeight: 1.9, textAlign: 'right' }}>
               رصد — حل رقمي متكامل لتنظيم وإدارة العملية التعليمية للمدرسين والسناتر.
@@ -771,9 +837,10 @@ function Footer() {
             <p style={{ fontSize: 11, fontWeight: 800, color: 'rgba(232,240,242,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 18 }}>روابط سريعة</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
               {links.map((l, i) => (
-                <a key={i} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ fontSize: 14, color: l.external ? '#B8860B' : 'rgba(232,240,242,0.42)', textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 4 }}
-                  onMouseEnter={e => e.currentTarget.style.color = l.external ? '#D4A017' : '#0F5B6E'}
-                  onMouseLeave={e => e.currentTarget.style.color = l.external ? '#B8860B' : 'rgba(232,240,242,0.42)'}>
+                <a key={i} href={l.href} download={l.download} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} style={{ fontSize: 14, color: l.external ? '#B8860B' : (l.download ? '#D4A017' : 'rgba(232,240,242,0.42)'), textDecoration: 'none', transition: 'color 0.15s', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                  onMouseEnter={e => e.currentTarget.style.color = l.external ? '#D4A017' : (l.download ? '#F5B041' : '#0F5B6E')}
+                  onMouseLeave={e => e.currentTarget.style.color = l.external ? '#B8860B' : (l.download ? '#D4A017' : 'rgba(232,240,242,0.42)')}>
+                  {l.download && <Ic n={l.download.endsWith('.apk') ? 'dl' : 'file'} s={14} c={l.download ? '#D4A017' : 'currentColor'} />}
                   <span>{l.label}</span>
                   {l.external && <span style={{ fontSize: 11 }}>↗</span>}
                 </a>

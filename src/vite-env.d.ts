@@ -5,6 +5,16 @@ declare module '*.apk?url' {
   export default src
 }
 
+declare module '*.pdf?url' {
+  const src: string
+  export default src
+}
+
+declare module '*.pdf' {
+  const src: string
+  export default src
+}
+
 declare module '*.mp4' {
   const src: string
   export default src
