@@ -1,0 +1,15 @@
+{
+  "title": "رصد | منصة إدارة المراكز والسناتر التعليمية",
+  "language": "ar",
+  "description": "منصة رصد التعليمية — المنظومة المتكاملة لإدارة المراكز التعليمية والدروس الخصوصية: شؤون الطلاب، المجموعات، الحضور والغياب، الامتحانات والتقارير المالية.",
+  "robots": {
+    "index": true
+  },
+  "icons": {
+    "icon": "./favicon.svg"
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+
+# Vite & build caches
+.cache/
+.vite/
+vite.config.*.timestamp-*
+*.tsbuildinfo
+
+# Environment variables
+.env*
+!.env.example
+
+# Logs
+logs/
+*.log
+*-debug.log*
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE & Editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Figma & Agents state
+/.figma/design-context/
+/.plugins/
+/.opencode-skills/
+.claude-replay.*
+.tmp-*
+.tempmediaStorage/
