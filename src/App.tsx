@@ -143,91 +143,6 @@ function PhoneMockup({ size = 280, imgSrc, alt = 'لقطة شاشة من تطب�
   )
 }
 
-/* ══════════════════════════════════════════════
-   DESKTOP FRAME
-══════════════════════════════════════════════ */
-
-function DesktopDashboard() {
-  return (
-    <div style={{ display: 'flex', minHeight: 440, background: '#0F1A1D', direction: 'rtl', fontFamily: 'Cairo,sans-serif', minWidth: 540 }}>
-      {/* Sidebar */}
-      <div style={{ width: 60, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '14px 0', gap: 8, background: '#0A1316', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ width: 34, height: 34, borderRadius: 12, background: '#0F5B6E', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
-          <span style={{ fontSize: 14, fontWeight: 900, color: 'white' }}>ر</span>
-        </div>
-        {['⊞','👥','📋','✓','💳','📊','⚙️'].map((ic,i)=>(
-          <div key={i} style={{ width: 38, height: 38, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, background: i===0 ? 'rgba(15,91,110,0.25)' : 'transparent', border: i===0 ? '1px solid rgba(15,91,110,0.4)' : 'none', opacity: i===0 ? 1 : 0.38 }}>{ic}</div>
-        ))}
-      </div>
-      {/* Main */}
-      <div style={{ flex: 1, padding: '18px 22px', overflow: 'auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, direction: 'ltr' }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(15,91,110,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(15,91,110,0.45)', flexShrink: 0 }}>
-              <span style={{ fontSize: 12, fontWeight: 800, color: '#0F5B6E' }}>أ</span>
-            </div>
-            <div style={{ direction: 'rtl' }}>
-              <div style={{ fontSize: 11, fontWeight: 800, color: '#E8F0F2' }}>أ. محمد الشريف</div>
-              <div style={{ fontSize: 9, color: 'rgba(232,240,242,0.3)' }}>مدرس الرياضيات</div>
-            </div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 15, fontWeight: 900, color: '#E8F0F2' }}>لوحة التحكم</div>
-            <div style={{ fontSize: 9, color: 'rgba(232,240,242,0.3)' }}>الثلاثاء، ٢٦ سبتمبر ٢٠٢٦</div>
-          </div>
-        </div>
-        {/* Stat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 16 }}>
-          {[['1,240','إجمالي الطلاب','#0F5B6E','👥','+45'],['15','المجموعات النشطة','#2F6B4F','📋','نشطة'],['94%','حضور اليوم','#2F6B4F','✓','+2%'],['315','مدفوعات اليوم','#B8860B','💳','إيصال']].map(([v,l,c,ic,ch],i)=>(
-            <div key={i} style={{ background: `${c}10`, border: `1px solid ${c}22`, borderRadius: 16, padding: '10px 12px', textAlign: 'right' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                <span style={{ fontSize: 18 }}>{ic}</span>
-                <span style={{ fontSize: 8, color: 'rgba(232,240,242,0.38)' }}>{l}</span>
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 900, color: c as string, lineHeight: 1 }}>{v}</div>
-              <div style={{ fontSize: 9, color: `${c}99`, marginTop: 4 }}>{ch} هذا الشهر</div>
-            </div>
-          ))}
-        </div>
-        {/* Two columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 10 }}>
-          <div style={{ background: '#1A2C32', borderRadius: 16, padding: '12px 14px', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#E8F0F2', marginBottom: 12, borderRight: '2.5px solid #0F5B6E', paddingRight: 8 }}>أحدث الطلاب</div>
-            {[['محمد أحمد السيد','رياضيات - أ','اليوم','نشط'],['سارة علي محمود','فيزياء - ب','أمس','نشط'],['خالد إبراهيم','كيمياء - أ','٢ أيام','غائب'],['نور الهدى أحمد','رياضيات - ب','٣ أيام','نشط']].map(([n,g,d,st],i)=>(
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0', borderBottom: i<3 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
-                <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'rgba(15,91,110,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ fontSize: 10, fontWeight: 800, color: '#0F5B6E' }}>{(n as string)[0]}</span>
-                </div>
-                <div style={{ flex: 1, textAlign: 'right' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(232,240,242,0.9)' }}>{n}</div>
-                  <div style={{ fontSize: 8, color: 'rgba(232,240,242,0.3)' }}>{g}</div>
-                </div>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <div style={{ padding: '2px 7px', borderRadius: 20, fontSize: 8, background: st==='نشط' ? 'rgba(47,107,79,0.2)' : 'rgba(192,57,43,0.15)', color: st==='نشط' ? '#2F6B4F' : '#E74C3C' }}>{st}</div>
-                  <span style={{ fontSize: 8, color: 'rgba(232,240,242,0.25)' }}>{d}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ background: '#1A2C32', borderRadius: 16, padding: '12px 14px', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#E8F0F2', marginBottom: 12, borderRight: '2.5px solid #B8860B', paddingRight: 8 }}>المجموعات</div>
-            {[['رياضيات أ',24,'#0F5B6E'],['فيزياء ب',18,'#2F6B4F'],['كيمياء أ',20,'#B8860B'],['رياضيات ب',22,'#0F5B6E']].map(([n,s,c],i)=>(
-              <div key={i} style={{ marginBottom: 10 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: c as string }}>{s}</span>
-                  <span style={{ fontSize: 9, color: 'rgba(232,240,242,0.6)' }}>{n}</span>
-                </div>
-                <div style={{ height: 5, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${(s as number)/30*100}%`, background: c as string, borderRadius: 4 }} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 /* ══════════════════════════════════════════════
    NAVBAR
@@ -522,60 +437,7 @@ function FeaturesSection({ dark }: { dark: boolean }) {
   )
 }
 
-/* ══════════════════════════════════════════════
-   DASHBOARD SECTION
-══════════════════════════════════════════════ */
 
-function DashboardSection({ dark }: { dark: boolean }) {
-  const textMain = dark ? '#E8F0F2' : '#0D1B1E'
-  const textMuted = dark ? 'rgba(232,240,242,0.52)' : 'rgba(13,27,30,0.52)'
-  const cardBg = dark ? '#1A2428' : 'white'
-  return (
-    <section id="dashboard" style={{ padding: '100px 20px', background: dark ? 'rgba(15,91,110,0.03)' : 'rgba(15,91,110,0.022)' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.13)' : 'rgba(15,91,110,0.07)', border: '1px solid rgba(15,91,110,0.25)', marginBottom: 18 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#0F5B6E' }}>لوحة التحكم</span>
-          </div>
-          <h2 style={{ fontSize: 'clamp(28px,3.5vw,42px)', fontWeight: 900, color: textMain, marginBottom: 14 }}>لوحة تحكم تلخص حالة العمليات في لمح البصر</h2>
-          <p style={{ fontSize: 16, color: textMuted, maxWidth: 540, margin: '0 auto' }}>شاشة واحدة تمنحك رؤية فورية لأعداد الطلاب، نسب حضور المجموعات، التحصيل المالي، وآخر العمليات المسجلة.</p>
-        </div>
-
-        <div className="reveal" style={{ position: 'relative' }}>
-          {/* Floating cards */}
-          <div className="animate-float" style={{ display: 'none', position: 'absolute', top: -24, right: 40, zIndex: 10, background: cardBg, border: '1px solid rgba(15,91,110,0.28)', borderRadius: 20, padding: '12px 20px', boxShadow: '0 10px 36px rgba(0,0,0,0.2)', textAlign: 'right' }} id="dash-card-1">
-            <div style={{ fontSize: 10, color: dark ? 'rgba(232,240,242,0.45)' : 'rgba(13,27,30,0.45)' }}>حضور اليوم</div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: '#0F5B6E' }}>94%</div>
-          </div>
-          <div className="animate-float-delayed" style={{ display: 'none', position: 'absolute', bottom: -24, left: 40, zIndex: 10, background: cardBg, border: '1px solid rgba(184,134,11,0.28)', borderRadius: 20, padding: '12px 20px', boxShadow: '0 10px 36px rgba(0,0,0,0.2)', textAlign: 'right' }} id="dash-card-2">
-            <div style={{ fontSize: 10, color: dark ? 'rgba(232,240,242,0.45)' : 'rgba(13,27,30,0.45)' }}>الطلاب المقيدون</div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: '#B8860B' }}>1,240</div>
-          </div>
-
-          {/* Browser frame */}
-          <div style={{ borderRadius: 20, overflow: 'hidden', border: '1.5px solid rgba(15,91,110,0.25)', boxShadow: '0 24px 80px rgba(0,0,0,0.3)' }}>
-            {/* Browser chrome */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', background: '#1A2C32', borderBottom: '1px solid rgba(15,91,110,0.2)' }}>
-              <div style={{ display: 'flex', gap: 6 }}>
-                {['rgba(231,76,60,0.5)','rgba(241,196,15,0.5)','rgba(46,204,113,0.5)'].map((c,i)=>(
-                  <div key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
-                ))}
-              </div>
-              <div style={{ flex: 1, background: '#0F1A1D', borderRadius: 10, padding: '5px 14px', display: 'flex', alignItems: 'center', gap: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#2F6B4F' }} />
-                <span style={{ fontSize: 11, color: 'rgba(232,240,242,0.3)' }}>rasd.app/dashboard</span>
-              </div>
-            </div>
-            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-              <DesktopDashboard />
-            </div>
-          </div>
-        </div>
-      </div>
-      <style>{`@media(min-width:900px){#dash-card-1,#dash-card-2{display:block!important}}`}</style>
-    </section>
-  )
-}
 
 /* ══════════════════════════════════════════════
    APP SHOWCASE SECTION (Real Screenshots)
@@ -962,7 +824,7 @@ function Footer() {
 ══════════════════════════════════════════════ */
 
 export default function App() {
-  const [dark, setDark] = useState(true)
+  const [dark, setDark] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
@@ -997,7 +859,6 @@ export default function App() {
       <HeroSection dark={dark} />
       <AboutSection dark={dark} />
       <FeaturesSection dark={dark} />
-      <DashboardSection dark={dark} />
       <ShowcaseSection dark={dark} activeTab={activeTab} setActiveTab={setActiveTab} />
       <HowSection dark={dark} />
       <VideoSection dark={dark} />
