@@ -1106,9 +1106,7 @@ function JoinSection({ dark }: { dark: boolean }) {
 
             {/* Bottom Watermark (Screenshot 2 watermark) */}
             <div style={{ marginTop: 44, textAlign: 'center', position: 'relative' }}>
-              <div style={{ fontSize: 'clamp(36px,5vw,56px)', fontWeight: 900, color: 'rgba(255,255,255,0.06)', letterSpacing: 2, userSelect: 'none', pointerEvents: 'none' }}>
-                رصد ديما رصد
-              </div>
+            
               <div style={{ fontSize: 13, color: 'rgba(232,240,242,0.45)', marginTop: 8 }}>
                 رصد — نظام تشغيل وإدارة السناتر · 01211483859
               </div>
@@ -1119,8 +1117,8 @@ function JoinSection({ dark }: { dark: boolean }) {
           <div className="reveal" style={{ background: 'linear-gradient(155deg,#0C292E 0%,#071B1F 70%,#051518 100%)', borderRadius: 32, border: '1.5px solid rgba(37,211,102,0.25)', padding: '38px 28px', boxShadow: '0 20px 50px rgba(0,0,0,0.35)', position: 'relative' }}>
             {/* Top Emblem Checkmark */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: 24 }}>
-              <div style={{ width: 56, height: 56, borderRadius: 18, background: 'linear-gradient(135deg,#25D366 0%,#0F5B6E 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 24px rgba(37,211,102,0.35)', marginBottom: 16 }}>
-                <Ic n="check" s={28} c="white" />
+              <div style={{ width: 56, height: 56, borderRadius: 18, background: 'linear-gradient(135deg,#25D366 0%,#0F5B6E 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 24px rgba(6, 70, 22, 0.35)', marginBottom: 16 }}>
+                <img src={imgLogo} alt="شعار منصة رصد" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12, }} />
               </div>
               <h3 style={{ fontSize: 28, fontWeight: 900, color: '#ffffff', marginBottom: 8 }}>طلب الانضمام لرصد</h3>
               <p style={{ fontSize: 15, color: 'rgba(232,240,242,0.7)', margin: 0 }}>سيب بياناتك ونتواصل معاك نفعّل سنترك.</p>
