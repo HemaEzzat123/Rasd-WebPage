@@ -62,6 +62,7 @@ const SHOWCASE_SCREENS = [
 
 const NAV_LINKS = [
   { label: 'الرئيسية',       href: '#hero' },
+  { label: 'طلب الانضمام',   href: '#join' },
   { label: 'عن رصد',         href: '#about' },
   { label: 'المميزات',       href: '#features' },
   { label: 'داخل التطبيق',  href: '#showcase' },
@@ -105,6 +106,21 @@ function Ic({ n, s = 20, c = 'currentColor' }: { n: string; s?: number; c?: stri
     case 'arrr':   return <svg {...p}><polyline points="9 18 15 12 9 6"/></svg>
     case 'droid':  return <svg {...p}><path d="m9 3 1.5 2.5M15 3l-1.5 2.5M6 16a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2z"/><line x1="8" y1="21" x2="8" y2="17"/><line x1="16" y1="21" x2="16" y2="17"/></svg>
     case 'file':   return <svg {...p}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    case 'whatsapp': return (
+      <svg width={s} height={s} viewBox="0 0 24 24" fill={c === 'currentColor' ? 'currentColor' : c}>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    )
+    case 'plane':
+    case 'send': return (
+      <svg {...p}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    )
+    case 'check': return (
+      <svg {...p}><polyline points="20 6 9 17 4 12"/></svg>
+    )
+    case 'phone': return (
+      <svg {...p}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    )
     default: return null
   }
 }
@@ -194,6 +210,32 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
 
           {/* Actions */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <a
+              href="https://wa.me/201211483859?text=السلام%20عليكم%20ورحمة%20الله،%20أود%20الاستفسار%20عن%20منظومة%20رصد%20التعليمية"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تواصل عبر واتساب 01211483859"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '7px 13px',
+                borderRadius: 14,
+                fontSize: 12,
+                fontWeight: 800,
+                color: '#FFFFFF',
+                background: '#25D366',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                boxShadow: '0 3px 12px rgba(37,211,102,0.35)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#20BA5A'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#25D366'; e.currentTarget.style.transform = 'none' }}
+            >
+              <Ic n="whatsapp" s={15} c="white" />
+              <span>01211483859</span>
+            </a>
+
             <button onClick={toggle} aria-label={dark ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي'} style={{ padding: '7px', borderRadius: 12, background: 'rgba(15,91,110,0.13)', border: '1px solid rgba(15,91,110,0.22)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.background = 'rgba(15,91,110,0.25)')}
               onMouseLeave={e => (e.currentTarget.style.background = 'rgba(15,91,110,0.13)')}>
@@ -221,7 +263,31 @@ function Navbar({ dark, toggle, scrolled, mobileOpen, setMobileOpen }: {
               {l.external && <span style={{ fontSize: 13 }}>↗</span>}
             </a>
           ))}
-          <a href={apkFile} download="Rasd-app.apk" style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', borderRadius: 16, fontSize: 15, fontWeight: 700, color: 'white', background: '#0F5B6E', textDecoration: 'none' }}
+          <a
+            href="https://wa.me/201211483859?text=السلام%20عليكم%20ورحمة%20الله،%20أود%20الاستفسار%20عن%20منظومة%20رصد%20التعليمية"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              marginTop: 14,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              padding: '13px',
+              borderRadius: 16,
+              fontSize: 15,
+              fontWeight: 800,
+              color: 'white',
+              background: '#25D366',
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+            }}
+            onClick={() => setMobileOpen(false)}
+          >
+            <Ic n="whatsapp" s={18} c="white" />
+            <span>تواصل واتساب: 01211483859</span>
+          </a>
+          <a href={apkFile} download="Rasd-app.apk" style={{ marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', borderRadius: 16, fontSize: 15, fontWeight: 700, color: 'white', background: '#0F5B6E', textDecoration: 'none' }}
             onClick={() => setMobileOpen(false)}>
             <Ic n="dl" s={17} c="white" />تحميل التطبيق
           </a>
@@ -265,29 +331,128 @@ function HeroSection({ dark }: { dark: boolean }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
           {/* Text */}
           <div style={{ flex: '1 1 420px', textAlign: 'right' }}>
-            <div className="hero-title" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '5px 16px 5px 12px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.14)' : 'rgba(15,91,110,0.08)', border: '1px solid rgba(15,91,110,0.3)', marginBottom: 24 }}>
+            {/* Top Rhyming Announcement Bar */}
+            <div
+              className="hero-title"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 12,
+                padding: '7px 16px',
+                borderRadius: 30,
+                background: dark ? 'rgba(37,211,102,0.12)' : 'rgba(37,211,102,0.08)',
+                border: '1.5px solid rgba(37,211,102,0.35)',
+                marginBottom: 16,
+                flexWrap: 'wrap',
+                boxShadow: '0 4px 18px rgba(37,211,102,0.15)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 16 }}>⚡</span>
+                <span style={{ fontSize: 14, fontWeight: 800, color: dark ? '#4EFA8B' : '#0F7640' }}>
+                  كل يوم بيعدي من غير رصد — وقت ومجهود بيضيع بلا قصد!
+                </span>
+              </div>
+              <a
+                href="https://wa.me/201211483859?text=السلام%20عليكم%20ورحمة%20الله،%20أود%20الاستفسار%20عن%20منظومة%20رصد%20التعليمية"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: '4px 12px',
+                  borderRadius: 20,
+                  background: '#25D366',
+                  color: '#ffffff',
+                  fontSize: 12,
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  boxShadow: '0 2px 8px rgba(37,211,102,0.35)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'none'}
+              >
+                <Ic n="whatsapp" s={14} c="white" />
+                <span>واتساب: 01211483859</span>
+              </a>
+            </div>
+
+            <div className="hero-title" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '5px 16px 5px 12px', borderRadius: 30, background: dark ? 'rgba(15,91,110,0.14)' : 'rgba(15,91,110,0.08)', border: '1px solid rgba(15,91,110,0.3)', marginBottom: 20, width: 'fit-content' }}>
               <img src={imgLogo} alt="شعار رصد" style={{ width: 22, height: 22, borderRadius: 6, objectFit: 'cover' }} />
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#2F6B4F' }} className="animate-pulse-slow" />
               <span style={{ fontSize: 13, fontWeight: 700, color: '#0F5B6E' }}>نظام إدارة السناتر التعليمية والمدرسين</span>
             </div>
 
-            <h1 className="hero-title" style={{ fontSize: 'clamp(34px,5vw,60px)', fontWeight: 900, lineHeight: 1.22, color: textMain, marginBottom: 22 }}>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(34px,5vw,60px)', fontWeight: 900, lineHeight: 1.22, color: textMain, marginBottom: 18 }}>
               رصد —{' '}
               <span style={{ color: '#0F5B6E' }}>حل رقمي متكامل</span>
               <br />
               <span className="gradient-text">لتنظيم وإدارة العملية التعليمية</span>
             </h1>
 
-            <p className="hero-desc" style={{ fontSize: 'clamp(15px,2.2vw,18px)', color: textMuted, lineHeight: 1.9, marginBottom: 36, maxWidth: 520 }}>
+            <p className="hero-desc" style={{ fontSize: 'clamp(15px,2.2vw,18px)', color: textMuted, lineHeight: 1.9, marginBottom: 30, maxWidth: 520 }}>
               منظومة ذكية تمكّن المدرسين ومراكز التعليم من ضبط الحضور الفوري بـ QR Code، إدارة المجموعات، تحصيل المصروفات بإيصالات رقمية، وتوثيق سجل العمليات بكل دقة وأمان.
             </p>
 
             <div className="hero-cta" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <a href={apkFile} download="Rasd-app.apk" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 18, fontSize: 15, fontWeight: 800, color: 'white', background: '#0F5B6E', textDecoration: 'none', boxShadow: '0 8px 30px rgba(15,91,110,0.42)', transition: 'all 0.2s' }}
+              <a href={apkFile} download="Rasd-app.apk" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 26px', borderRadius: 18, fontSize: 15, fontWeight: 800, color: 'white', background: '#0F5B6E', textDecoration: 'none', boxShadow: '0 8px 30px rgba(15,91,110,0.42)', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#1A7A94'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(15,91,110,0.55)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = '#0F5B6E'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(15,91,110,0.42)' }}>
                 <Ic n="dl" s={18} c="white" />تحميل التطبيق
               </a>
+
+              {/* WhatsApp Hero CTA */}
+              <a
+                href="https://wa.me/201211483859?text=السلام%20عليكم%20ورحمة%20الله،%20أود%20الاستفسار%20عن%20منظومة%20رصد%20التعليمية%20وتفعيل%20حساب%20السنتر"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 9,
+                  padding: '13px 24px',
+                  borderRadius: 18,
+                  fontSize: 15,
+                  fontWeight: 800,
+                  color: 'white',
+                  background: '#25D366',
+                  textDecoration: 'none',
+                  boxShadow: '0 8px 26px rgba(37,211,102,0.38)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#20BA5A'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#25D366'; e.currentTarget.style.transform = 'none' }}
+              >
+                <Ic n="whatsapp" s={19} c="white" />
+                <span>واتساب: 01211483859</span>
+              </a>
+
+              {/* Join Form Link */}
+              <a
+                href="#join"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '13px 22px',
+                  borderRadius: 18,
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: dark ? '#58D3E8' : '#0F5B6E',
+                  background: dark ? 'rgba(15,91,110,0.18)' : 'rgba(15,91,110,0.08)',
+                  border: '1.5px solid rgba(15,91,110,0.35)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(15,91,110,0.28)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = dark ? 'rgba(15,91,110,0.18)' : 'rgba(15,91,110,0.08)'; e.currentTarget.style.transform = 'none' }}
+              >
+                <Ic n="send" s={16} c={dark ? '#58D3E8' : '#0F5B6E'} />
+                <span>طلب الانضمام لرصد</span>
+              </a>
+
               <a href={pdfFile} download="رصد_توثيق_المنتج.pdf" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 22px', borderRadius: 18, fontSize: 15, fontWeight: 700, color: '#B8860B', background: dark ? 'rgba(184,134,11,0.12)' : 'rgba(184,134,11,0.08)', border: '1.5px solid rgba(184,134,11,0.35)', textDecoration: 'none', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(184,134,11,0.2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = dark ? 'rgba(184,134,11,0.12)' : 'rgba(184,134,11,0.08)'; e.currentTarget.style.transform = 'none' }}>
@@ -799,12 +964,368 @@ function DownloadSection({ dark }: { dark: boolean }) {
 }
 
 /* ══════════════════════════════════════════════
+   JOIN & REGISTRATION SECTION (SCREENSHOT 1 & 2)
+══════════════════════════════════════════════ */
+
+function JoinSection({ dark }: { dark: boolean }) {
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [subject, setSubject] = useState('')
+  const [city, setCity] = useState('')
+  const [students, setStudents] = useState('')
+  const [notes, setNotes] = useState('')
+  const [error, setError] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!name.trim()) {
+      setError('يرجى كتابة الاسم الكريم للمتابعة')
+      return
+    }
+    if (!phone.trim()) {
+      setError('يرجى كتابة رقم الموبايل أو الواتساب للتواصل معك')
+      return
+    }
+    setError('')
+    setSubmitted(true)
+
+    const welcomeMsg = `مرحباً فريق منظومة رصد التعليمية 👋
+أود تقديم طلب انضمام لتفعيل المنظومة في السنتر الخاص بي.
+
+📋 بيانات الطلب:
+• 👤 الاسم: ${name.trim()}
+• 📱 رقم الموبايل (واتساب): ${phone.trim()}
+• 📚 المادة: ${subject.trim() || 'لم تُحدد'}
+• 📍 المدينة / المنطقة: ${city.trim() || 'لم تُحدد'}
+• 👥 عدد الطلاب تقريباً: ${students.trim() || 'لم يُحدد'}
+• 📝 ملاحظات إضافية: ${notes.trim() || 'لا يوجد'}
+
+أرجو التواصل لتجهيز وتفعيل المنظومة. شكراً لكم! ✨`
+
+    const waUrl = `https://wa.me/201211483859?text=${encodeURIComponent(welcomeMsg)}`
+    window.open(waUrl, '_blank')
+  }
+
+  const resetForm = () => {
+    setName('')
+    setPhone('')
+    setSubject('')
+    setCity('')
+    setStudents('')
+    setNotes('')
+    setSubmitted(false)
+    setError('')
+  }
+
+  return (
+    <section id="join" style={{ padding: '90px 20px', background: dark ? '#081417' : '#0B2328', position: 'relative', overflow: 'hidden' }}>
+      {/* Background Ambience */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', width: 650, height: 650, top: -150, right: -150, borderRadius: '50%', background: 'radial-gradient(circle,rgba(26,155,181,0.18) 0%,transparent 70%)' }} />
+        <div style={{ position: 'absolute', width: 550, height: 550, bottom: -150, left: -120, borderRadius: '50%', background: 'radial-gradient(circle,rgba(37,211,102,0.14) 0%,transparent 70%)' }} />
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.03, backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px,transparent 1px),linear-gradient(to left,rgba(255,255,255,0.8) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+      </div>
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(340px,1fr))', gap: 32, alignItems: 'stretch' }}>
+
+          {/* ── CARD 1: Hook Card (Screenshot 2: آخر حاجة) ── */}
+          <div className="reveal" style={{ background: 'linear-gradient(155deg,#0E2E33 0%,#081D21 65%,#051518 100%)', borderRadius: 32, border: '1.5px solid rgba(26,155,181,0.28)', padding: '44px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.35)' }}>
+            {/* Top Badge */}
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '5px 14px', borderRadius: 24, background: 'rgba(37,211,102,0.15)', border: '1px solid rgba(37,211,102,0.35)', marginBottom: 26 }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#25D366' }} className="animate-pulse-slow" />
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#4EFA8B' }}>آخر حاجة</span>
+              </div>
+
+              {/* Slogan */}
+              <h3 style={{ fontSize: 'clamp(26px,3.8vw,42px)', fontWeight: 900, color: '#ffffff', lineHeight: 1.28, marginBottom: 18, textAlign: 'right' }}>
+                كل يوم بيعدي من غير رصد —<br />
+                <span style={{ color: '#25D366' }}>وقت وفلوس مش هيرجعوا.</span>
+              </h3>
+
+              <p style={{ fontSize: 16, color: 'rgba(232,240,242,0.78)', lineHeight: 1.9, textAlign: 'right', marginBottom: 28, maxWidth: 480 }}>
+                جرّب منظومة رصد على بيانات سنترك الحقيقية. ولو محتاج حد يجهزك ويشغّل لك كل حاجة خطوة بخطوة – كلمنا فوراً على الواتساب.
+              </p>
+
+              {/* Contact Buttons (matching Screenshot 2) */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <a
+                  href={apkFile}
+                  download="Rasd-app.apk"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                    padding: '15px 24px',
+                    borderRadius: 16,
+                    fontSize: 16,
+                    fontWeight: 800,
+                    color: '#081D21',
+                    background: '#1A9BB5',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                    boxShadow: '0 6px 20px rgba(26,155,181,0.35)',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#22B4D2'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = '#1A9BB5'; e.currentTarget.style.transform = 'none' }}
+                >
+                  <Ic n="dl" s={18} c="#081D21" />
+                  <span>حمّل التطبيق</span>
+                </a>
+
+                <a
+                  href="https://wa.me/201211483859?text=السلام%20عليكم%20ورحمة%20الله،%20أود%20الاستفسار%20عن%20منظومة%20رصد%20التعليمية%20وتفعيل%20حساب%20السنتر"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                    padding: '15px 24px',
+                    borderRadius: 16,
+                    fontSize: 16,
+                    fontWeight: 800,
+                    color: '#ffffff',
+                    background: '#25D366',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                    boxShadow: '0 6px 20px rgba(37,211,102,0.35)',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#20BA5A'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = '#25D366'; e.currentTarget.style.transform = 'none' }}
+                >
+                  <Ic n="whatsapp" s={20} c="white" />
+                  <span>واتساب 01211483859</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Bottom Watermark (Screenshot 2 watermark) */}
+            <div style={{ marginTop: 44, textAlign: 'center', position: 'relative' }}>
+              <div style={{ fontSize: 'clamp(36px,5vw,56px)', fontWeight: 900, color: 'rgba(255,255,255,0.06)', letterSpacing: 2, userSelect: 'none', pointerEvents: 'none' }}>
+                رصد ديما رصد
+              </div>
+              <div style={{ fontSize: 13, color: 'rgba(232,240,242,0.45)', marginTop: 8 }}>
+                رصد — نظام تشغيل وإدارة السناتر · 01211483859
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 2: Registration Form (Screenshot 1: طلب الانضمام لرصد) ── */}
+          <div className="reveal" style={{ background: 'linear-gradient(155deg,#0C292E 0%,#071B1F 70%,#051518 100%)', borderRadius: 32, border: '1.5px solid rgba(37,211,102,0.25)', padding: '38px 28px', boxShadow: '0 20px 50px rgba(0,0,0,0.35)', position: 'relative' }}>
+            {/* Top Emblem Checkmark */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: 24 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 18, background: 'linear-gradient(135deg,#25D366 0%,#0F5B6E 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 24px rgba(37,211,102,0.35)', marginBottom: 16 }}>
+                <Ic n="check" s={28} c="white" />
+              </div>
+              <h3 style={{ fontSize: 28, fontWeight: 900, color: '#ffffff', marginBottom: 8 }}>طلب الانضمام لرصد</h3>
+              <p style={{ fontSize: 15, color: 'rgba(232,240,242,0.7)', margin: 0 }}>سيب بياناتك ونتواصل معاك نفعّل سنترك.</p>
+            </div>
+
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '36px 16px', background: 'rgba(37,211,102,0.08)', borderRadius: 20, border: '1px solid rgba(37,211,102,0.3)' }}>
+                <div style={{ width: 60, height: 60, borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', boxShadow: '0 6px 20px rgba(37,211,102,0.4)' }}>
+                  <Ic n="check" s={30} c="white" />
+                </div>
+                <h4 style={{ fontSize: 20, fontWeight: 900, color: 'white', marginBottom: 8 }}>تم تجهيز طلبك بنجاح!</h4>
+                <p style={{ fontSize: 14, color: 'rgba(232,240,242,0.85)', lineHeight: 1.8, marginBottom: 20 }}>
+                  جاري تحويلك الآن إلى واتساب على الرقم <strong>01211483859</strong> لإرسال بياناتك لفريق الدعم والتفعيل.
+                </p>
+                <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <a
+                    href={`https://wa.me/201211483859?text=${encodeURIComponent(`مرحباً فريق منظومة رصد التعليمية 👋\nطلب انضمام جديد:\n• الاسم: ${name}\n• الموبايل: ${phone}\n• المادة: ${subject || 'لم تُحدد'}\n• المدينة: ${city || 'لم تُحدد'}\n• عدد الطلاب: ${students || 'لم تُحدد'}\n• ملاحظات: ${notes || 'لا يوجد'}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      padding: '10px 20px',
+                      borderRadius: 12,
+                      background: '#25D366',
+                      color: 'white',
+                      fontWeight: 800,
+                      fontSize: 14,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <Ic n="whatsapp" s={16} c="white" />
+                    فتح محادثة واتساب الآن
+                  </a>
+                  <button
+                    onClick={resetForm}
+                    style={{
+                      padding: '10px 18px',
+                      borderRadius: 12,
+                      background: 'rgba(255,255,255,0.1)',
+                      color: 'white',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      fontSize: 13,
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    إرسال طلب آخر
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {error && (
+                  <div style={{ padding: '10px 14px', borderRadius: 12, background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.4)', color: '#FCA5A5', fontSize: 13, fontWeight: 700, textAlign: 'right' }}>
+                    ⚠️ {error}
+                  </div>
+                )}
+
+                {/* 1. Name */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-name" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    الاسم <span style={{ color: '#F87171' }}>*</span>
+                  </label>
+                  <input
+                    id="rasd-name"
+                    type="text"
+                    required
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="ا. احمد علي"
+                    className="rasd-input"
+                  />
+                </div>
+
+                {/* 2. Phone */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-phone" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    رقم الموبايل (واتساب) <span style={{ color: '#F87171' }}>*</span>
+                  </label>
+                  <input
+                    id="rasd-phone"
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    placeholder="010xxxxxxxx"
+                    className="rasd-input"
+                    dir="ltr"
+                    style={{ textAlign: 'right' }}
+                  />
+                </div>
+
+                {/* 3. Subject */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-subject" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    المادة
+                  </label>
+                  <input
+                    id="rasd-subject"
+                    type="text"
+                    value={subject}
+                    onChange={e => setSubject(e.target.value)}
+                    placeholder="رياضيات"
+                    className="rasd-input"
+                  />
+                </div>
+
+                {/* 4. City / Area */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-city" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    المدينة / المنطقة
+                  </label>
+                  <input
+                    id="rasd-city"
+                    type="text"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    placeholder="الزقازيق"
+                    className="rasd-input"
+                  />
+                </div>
+
+                {/* 5. Approximate Students Count */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-students" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    عدد الطلاب تقريبًا
+                  </label>
+                  <input
+                    id="rasd-students"
+                    type="text"
+                    value={students}
+                    onChange={e => setStudents(e.target.value)}
+                    placeholder="مثال: ١٢٠"
+                    className="rasd-input"
+                  />
+                </div>
+
+                {/* 6. Notes (Optional) */}
+                <div style={{ textAlign: 'right' }}>
+                  <label htmlFor="rasd-notes" style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'rgba(232,240,242,0.88)', marginBottom: 6 }}>
+                    ملاحظات (اختياري)
+                  </label>
+                  <textarea
+                    id="rasd-notes"
+                    rows={3}
+                    value={notes}
+                    onChange={e => setNotes(e.target.value)}
+                    placeholder="أي تفاصيل تحب تقولها لنا..."
+                    className="rasd-input"
+                    style={{ resize: 'vertical', minHeight: 76 }}
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  style={{
+                    marginTop: 8,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                    padding: '15px 24px',
+                    borderRadius: 16,
+                    fontSize: 16,
+                    fontWeight: 800,
+                    color: 'white',
+                    background: 'linear-gradient(135deg, #128C7E 0%, #0F5B6E 100%)',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 8px 24px rgba(18,140,126,0.4)',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(18,140,126,0.55)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(18,140,126,0.4)' }}
+                >
+                  <Ic n="send" s={18} c="white" />
+                  <span>إرسال الطلب عبر واتساب</span>
+                </button>
+
+                <div style={{ textAlign: 'center', marginTop: 4 }}>
+                  <span style={{ fontSize: 12, color: 'rgba(232,240,242,0.5)' }}>
+                    سيتم إرسال رسالتك مباشرة إلى رقم الواتساب: <strong>01211483859</strong>
+                  </span>
+                </div>
+              </form>
+            )}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ══════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════ */
 
 function Footer() {
   const links = [
     { label: 'الرئيسية', href: '#hero' },
+    { label: 'طلب الانضمام لرصد', href: '#join' },
     { label: 'عن رصد', href: '#about' },
     { label: 'المميزات', href: '#features' },
     { label: 'داخل التطبيق', href: '#showcase' },
@@ -812,7 +1333,8 @@ function Footer() {
     { label: 'كيف يعمل', href: '#how' },
     { label: 'تحميل تطبيق رصد (APK)', href: apkFile, download: 'Rasd-app.apk' },
     { label: 'دليل المنظومة (PDF)', href: pdfFile, download: 'رصد_توثيق_المنتج.pdf' },
-    { label: 'تواصل معنا', href: 'https://www.elevix.space/', external: true },
+    { label: 'واتساب مباشر: 01211483859', href: 'https://wa.me/201211483859', external: true },
+    { label: 'تواصل معنا (المطور)', href: 'https://www.elevix.space/', external: true },
   ]
   return (
     <footer style={{ background: '#0A1316', fontFamily: 'Cairo,sans-serif' }}>
@@ -831,6 +1353,30 @@ function Footer() {
             <p style={{ fontSize: 14, color: 'rgba(232,240,242,0.42)', lineHeight: 1.9, textAlign: 'right' }}>
               رصد — حل رقمي متكامل لتنظيم وإدارة العملية التعليمية للمدرسين والسناتر.
             </p>
+            <div style={{ marginTop: 14, textAlign: 'right' }}>
+              <a
+                href="https://wa.me/201211483859"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '8px 16px',
+                  borderRadius: 14,
+                  background: 'rgba(37,211,102,0.14)',
+                  border: '1px solid rgba(37,211,102,0.35)',
+                  color: '#4EFA8B',
+                  fontSize: 13,
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <Ic n="whatsapp" s={16} c="#25D366" />
+                <span>واتساب رصد: 01211483859</span>
+              </a>
+            </div>
           </div>
           {/* Links */}
           <div style={{ textAlign: 'right' }}>
@@ -931,7 +1477,9 @@ export default function App() {
       <VideoSection dark={dark} />
       <WhySection dark={dark} />
       <DownloadSection dark={dark} />
+      <JoinSection dark={dark} />
       <Footer />
     </div>
   )
 }
+
